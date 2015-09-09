@@ -44,7 +44,6 @@
   <a href="{{ action("RepairsController@edit",$repair) }}" title="تعديل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit " aria-hidden="true"></span></a>
   @endcan
   <a href="{{ action("RepairsController@show",[$repair,'action'=> 'RepairsController@finish']) }}" title="إتمام" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-thumbs-up " aria-hidden="true"></span></a>
-  <a href="#" title="إعتماد" aria-label="Left Align" data-toggle="modal" data-target="#myModal" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash " aria-hidden="true"></span></a>
 
 </td>
 </tr>

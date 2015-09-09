@@ -94,9 +94,21 @@
 
      <div class="form-group col-md-5">
      <br/>
-     {!! Form::submit("إصلاح",['class'=>'form-control btn-primary']) !!}
+     {!! Form::submit("تعديل",['class'=>'btn btn-primary']) !!}
+     <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#myModal">
+     حذف</button>
      </div>
 
+     <!-- Modal -->
+     @include('partials.modal',[
+       'model' => "$repair",
+       'wild' => "$repair->rep_id",
+       'method'=>'DELETE',
+       'action'=>"RepairsController@destroy",
+       'modal_title'=>'حذف تقرير',
+       'modal_body'=>'هل تريد حذف هذا التقرير'
+
+       ])
 
    </div>
   </div><!--Box-->

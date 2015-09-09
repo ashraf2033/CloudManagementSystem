@@ -10,6 +10,7 @@ use App\SparePart;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
+use Gate;
 
 class TasksController extends Controller
 {
@@ -32,6 +33,9 @@ class TasksController extends Controller
      */
     public function create()
     {
+      if (Gate::denies('maintain')) {
+        abort(403, 'هذا الإجراء ليس من صلاحياتك');
+      }
       $part_names = DB::table('spare_parts')->lists('part_name');
       $part_ids = DB::table('spare_parts')->lists('part_id');
       $parts=array_combine($part_ids,$part_names);

@@ -2,6 +2,8 @@
 @section('head')
 <link rel="stylesheet" href="/AdminLTE-RTL/plugins/datepicker/datepicker3.css" media="screen" title="no title" charset="utf-8">
 <link rel="stylesheet" href="/AdminLTE-RTL/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="/AdminLTE-RTL/plugins/bootstrap-select/dist/css/bootstrap-select_rtl.min.css" media="screen" title="no title" charset="utf-8">
+
 @endsection
 @section('content')
 @include('repairs.fail_info')
@@ -47,7 +49,7 @@
 
         <div class="col-md-6">
 
-        {!! Form::select('technicans[]',$technicans,null,['class' => 'form-control','placeholder'=>'إسم الفني']) !!}
+        {!! Form::select('technicans[]',$technicans,0,['class' => 'form-control selectpicker', 'data-live-search'=>'true']) !!}
 
 
         </div>
@@ -70,36 +72,40 @@
 
 
 
-     <div class="input_fields_wrap1">
+<div class="input_fields_wrap1">
 <div class="form-group fields1">
+<div class="col-md-9 aaa">
 
-     <div class="col-md-6">
+     <div class="col-md-8 form-group">
 
-     {!! Form::select('part_id[]',['إختر']+$parts,0,['class' => 'form-control','placeholder'=>'الصنف']) !!}
+     {!! Form::select('part_id[]',$parts,0,['class' => 'form-control selectpicker','data-live-search'=> 'true']) !!}
      </div>
 
      <div class="col-md-3">
 
      {!! Form::input('number','part_qty[]',null,['class' => 'form-control','placeholder'=>'الكمية']) !!}
-
      </div>
-</div>
+<!--     <button class="btn btn-danger fa fa-minus remove_field" type="button" name="button"></button>-->
 
-
-</div>
 <button class="btn btn-primary fa fa-plus addButton" type="button" name="button"></button>
+</div>
+</div>
 
-<div class="moreForms"></div>
-
-
-
-     <div class="form-group col-md-5">
-     <br/>
-     {!! Form::submit("إصلاح",['class'=>'form-control btn-primary']) !!}
-     </div>
+</div>
 
 
+<div class="moreForms form-group"></div>
+
+
+   <!--<button class="btn btn-danger fa fa-minus remove_field" type="button" name="button"></button>-->
    </div>
+
+  <div class="box-footer">
+    <div class="form-group col-md-5">
+    {!! Form::submit("إصلاح",['class'=>'form-control btn-primary']) !!}
+    </div>
+
+  </div>
   </div><!--Box-->
   </div>
   {!! Form::close() !!}
@@ -108,14 +114,8 @@
 @section('scripts')
 <script type="text/javascript" src="/js/addinput.js"></script>
 <script type="text/javascript" src="/js/addinput2.js"></script>
-<script src="/AdminLTE-RTL/plugins/select2/select2.full.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-$(".select2").select2({
 
-});
-});
-</script>
+<script type="text/javascript" src="/AdminLTE-RTL/plugins/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 
 <script type="text/javascript" src="/AdminLTE-RTL/plugins/datepicker/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="/AdminLTE-RTL/plugins/datepicker/locales/bootstrap-datepicker.ar.js"></script>
@@ -141,5 +141,10 @@ $(function() {
                 });
             });
         </script>
+        <script type="text/javascript">
+    			  $('.selectpicker').selectpicker({
+              title : "إختر..."
 
+    				});
+    		</script>
 @endsection

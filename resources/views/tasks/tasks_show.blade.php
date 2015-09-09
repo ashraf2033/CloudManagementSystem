@@ -39,8 +39,8 @@
 </div><!--/box-body-->
 <div class="box-footer">
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">
-إعتماد</button>
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+<span class="glyphicon glyphicon-ok"></span>إعتماد</button>
 </div>
 <!-- Modal -->
 @include('partials.modal',[

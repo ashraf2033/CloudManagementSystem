@@ -18,7 +18,7 @@
       <div class="inner">
         <h3>{{ $tasks_count }}</h3>
         <h4> مهام فحص هذا اليوم</h4>
-      </div>
+      </div>  
       <div class="icon">
                     <i class="fa fa-support"></i>
                   </div>

@@ -10,7 +10,8 @@
         "illuminate/html": "^5.0",
         "select2/select2": "^4.0",
    "robloach/component-installer": "*",
-        "jenssegers/date": "^3.0"
+        "jenssegers/date": "^3.0",
+        "bootstrap-select/bootstrap-select": "^1.7"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

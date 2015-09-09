@@ -12,14 +12,15 @@
 		<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 		<!-- Ionicons -->
 		<link href="/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-
 		<link href="/css/app.css" rel="stylesheet" type="text/css" />
+
 		<!-- Theme style -->
 		<link href="/AdminLTE-RTL/dist/css/AdminLTE_rtl.css" rel="stylesheet" type="text/css" />
 
 		<!-- AdminLTE Skins. Choose a skin from the css/skins
 		     folder instead of downloading all of them to reduce the load. -->
-		<link href="/AdminLTE-RTL/dist/css/skins/skin-red.min.css" rel="stylesheet" type="text/css" />
+				 <link href="/AdminLTE-RTL/dist/css/skins/skin-red.min.css" rel="stylesheet" type="text/css" />
+
  @yield('head')
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

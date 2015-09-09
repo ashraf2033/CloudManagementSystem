@@ -2,6 +2,7 @@
 	<link rel="stylesheet" href="/AdminLTE-RTL/plugins/select2/select2.min.css" media="screen" title="no title" charset="utf-8">
 
 	<link rel="stylesheet" href="/AdminLTE-RTL/plugins/datepicker/datepicker3.css" media="screen" title="no title" charset="utf-8">
+	<link rel="stylesheet" href="/AdminLTE-RTL/plugins/bootstrap-select/dist/css/bootstrap-select_rtl.min.css" media="screen" title="no title" charset="utf-8">
 
 
 
@@ -13,7 +14,7 @@
 	</div>
 	<div class="form-group col-md-3">
 	{!! Form::label('machine_id','الآلة:') !!}
-	{!! Form::select('machine_id',$machine_list,1, ['class'=>'form-control js-example-basic-single']) !!}
+	{!! Form::select('machine_id',$machine_list,0, ['class'=>'form-control selectpicker',	'data-live-search'=>'true','title'=>'إختر آلة']) !!}
 
 
 	</div>
@@ -103,18 +104,11 @@
 		</div>
 	</div>
 @section('scripts')
-		<script src="/AdminLTE-RTL/plugins/select2/select2.full.min.js" type="text/javascript"></script>
-		<script type="text/javascript">
-		$(document).ready(function() {
-		$(".js-example-basic-single").select2({
-			placeholder: "إختر آلة",
-	  allowClear: true
-		});
-		});
-		</script>
+
 
 		<script type="text/javascript" src="/AdminLTE-RTL/plugins/datepicker/bootstrap-datepicker.js"></script>
 		<script type="text/javascript" src="/AdminLTE-RTL/plugins/datepicker/locales/bootstrap-datepicker.ar.js"></script>
+		<script type="text/javascript" src="/AdminLTE-RTL/plugins/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 
 		<script type="text/javascript">
 		$(function() {
@@ -125,5 +119,11 @@
 
 			});
 		});
+		</script>
+		<script type="text/javascript">
+			  $('.selectpicker').selectpicker({
+					title : "إختر آلة ...",
+					
+				});
 		</script>
 @endsection

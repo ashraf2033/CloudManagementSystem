@@ -72,24 +72,30 @@
       </tbody>
       </table>
       <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">
-إعتماد</button>
-
-<!-- Modal -->
-@include('partials.modal',[
-  'model' => "$repair",
-  'wild' => "$repair->rep_id",
-  'method'=>'PATCH',
-  'action'=>Input::get('action'),
-  'modal_title'=>'إعتماد تقرير',
-  'modal_body'=>'هل تريد إعتماد هذا التقرير'
-
-  ])
 
 
 
     </div><!--/Box-body-->
+<div class="box-footer">
+  <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">
+  إعتماد</button>
 
+
+
+
+
+  <!-- Modal -->
+  @include('partials.modal',[
+    'model' => "$repair",
+    'wild' => "$repair->rep_id",
+    'method'=>'PATCH',
+    'action'=>Input::get('action'),
+    'modal_title'=>'إعتماد تقرير',
+    'modal_body'=>'هل تريد إعتماد هذا التقرير'
+
+    ])
+
+</div>
   </div> <!--/Box-->
 
 </div>
