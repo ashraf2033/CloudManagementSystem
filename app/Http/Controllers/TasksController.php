@@ -62,6 +62,10 @@ class TasksController extends Controller
         //create new task
         $task = Task::create($taskin);
 
+        $this->validate($request, [
+               'task_status' => 'required',
+               'task_name' => 'required',
+           ]);
         //attaching spare_parts
 
         $part_arr = $request->input('part_id');

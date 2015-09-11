@@ -13,6 +13,6 @@
 {!! Form::close() !!}
 </div>
 </div><!--/box-->
-@include('errors.errors')
+
 
 @stop

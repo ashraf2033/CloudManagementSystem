@@ -24,10 +24,8 @@ class RepairRequest extends Request
     public function rules()
     {
         return [
-            'rep_time'=>'required',
-            'rep_date'=>'required',
+
             'rep_dur'=>'required',
-            'rep_status'=>'required',
             'rep_details'=>'required'
 
         ];

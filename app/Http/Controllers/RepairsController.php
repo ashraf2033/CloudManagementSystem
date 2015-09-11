@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\RepairRequest;
+use App\Http\Requests\ReportFailureRequest;
 use App\Http\Requests;
 use Gate;
 use App\Http\Controllers\Controller;
@@ -88,7 +89,13 @@ class RepairsController extends Controller
       if (Gate::denies('maintain')) {
         abort(403, 'هذا الإجراء ليس من صلاحياتك');
       }
-
+      $this->validate($request, [
+          'rep_dur'=>'required',
+          'rep_details'=>'required',
+          'rep_date'=>'required',
+          'rep_status'=>'required',
+          'technicans'=>'required',
+      ]);
       $repair = Repair::create($repairin);
       //loop throught technincans fields
       foreach ($tech_arr as $tech) {
@@ -107,7 +114,7 @@ class RepairsController extends Controller
           $part_obj->repair()->attach($rep_id,['part_qty'=> $qty]);
         }
         }
-      //  return $repairin;
+
          return redirect('maintainance/repairs');
        }
 

@@ -11,7 +11,6 @@ class Repair extends Model
 protected $fillable =[
   'rep_time',
   'rep_date',
-  'rep_date',
   'rep_dur',
   'rep_details',
   'rep_status',

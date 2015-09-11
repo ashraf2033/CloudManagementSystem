@@ -40,16 +40,30 @@
       {!! Form::textarea('rep_details',null,['class' => 'form-control']) !!}
       </div>
 <div class="col-md-12">
-  <button class="btn btn-primary fa fa-plus addButton2" type="button" name="button"></button>
   {!! Form::label('technicans','الفنيين:') !!}
 </div>
         <div class="input_fields_wrap2">
 
      <div class="form-group fields">
+       <div class="col-md-9 aa">
 
+            <div class="col-md-8 form-group">
+
+              <select class="form-control selectpicker selectpicker2  bs-select-hidden" data-live-search="true" name="technicans[]"><option value="" class="bs-title-option">إختر...</option>
+                @foreach($technicans as $key => $tech)
+        <option value = {{ $key }} >{{ $tech }}</option>
+                @endforeach</select>
+            </div>
+
+
+       <!--     <button class="btn btn-danger fa fa-minus remove_field" type="button" name="button"></button>-->
+
+       <button class="btn btn-primary fa fa-plus addButton2" type="button" name="button"></button>
+       </div>
         <div class="col-md-6">
 
-        {!! Form::select('technicans[]',$technicans,0,['class' => 'form-control selectpicker', 'data-live-search'=>'true']) !!}
+
+
 
 
         </div>
@@ -78,12 +92,15 @@
 
      <div class="col-md-8 form-group">
 
-     {!! Form::select('part_id[]',$parts,0,['class' => 'form-control selectpicker','data-live-search'=> 'true']) !!}
+     <select class="form-control selectpicker bs-select-hidden" data-live-search="true" name="part_id[]">
+        @foreach($parts as $key => $pid)
+     <option value = {{ $key }} >{{ $pid }}</option>
+             @endforeach</select></select>
      </div>
 
      <div class="col-md-3">
 
-     {!! Form::input('number','part_qty[]',null,['class' => 'form-control','placeholder'=>'الكمية']) !!}
+     <input class="form-control" placeholder="الكمية" name="part_qty[]" type="number">
      </div>
 <!--     <button class="btn btn-danger fa fa-minus remove_field" type="button" name="button"></button>-->
 
@@ -102,7 +119,7 @@
 
   <div class="box-footer">
     <div class="form-group col-md-5">
-    {!! Form::submit("إصلاح",['class'=>'form-control btn-primary']) !!}
+    {!! Form::submit("إصلاح",['class'=>'btn btn-primary']) !!}
     </div>
 
   </div>
@@ -110,7 +127,9 @@
   </div>
   {!! Form::close() !!}
 </div><!--/row-->
+@include('errors.errors')
 @stop
+
 @section('scripts')
 <script type="text/javascript" src="/js/addinput.js"></script>
 <script type="text/javascript" src="/js/addinput2.js"></script>
