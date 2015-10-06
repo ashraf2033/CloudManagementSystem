@@ -22,6 +22,8 @@ class CreateTasksTable extends Migration
             $table->string('task_status');
             $table->integer('tech_id')->unsigned();
             $table->foreign('tech_id')->references('id')->on('technicans');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('user_id')->on('users');
             $table->timestamps();
         });
     }

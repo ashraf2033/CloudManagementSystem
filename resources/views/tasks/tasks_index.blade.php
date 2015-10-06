@@ -10,12 +10,8 @@
 <div class="box-body">
 <div class="row">
   <div class="col-md-12">
-<div class="col-md-1 pull-right">
 
-<a href="{{ action("TasksController@create")}}">
-    <button class="btn btn-primary " type="button" name="new">إضافة</button>
-    </a>
-</div>
+
   </div>
 </div>
 <div><!--table-->
@@ -67,6 +63,12 @@
  </table>
 </div>
 </div><!--/.box-body-->
+ <div class="box-footer">
+   <a href="{{ action("TasksController@create")}}">
+       <button class="btn btn-primary " type="button" name="new">إضافة</button>
+       </a>
+
+ </div>
  </div><!--/.box-->
  </div><!--/.col-->
 </div><!--/.row-->

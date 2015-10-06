@@ -24,6 +24,7 @@
               {!! Form::hidden('fail_id',$fail->fail_id ) !!}
       {!! Form::label('rep_date','تاريخ الإصلاح:') !!}
       {!! Form::text('rep_date',date('Y-m-d'),['class' => 'form-control','id'=>'datepicker']) !!}
+        {!! Form::hidden('user_id',\Auth::user()->user_id ) !!}
       </div>
 
       <div class="form-group col-md-6">
@@ -33,7 +34,7 @@
 
       <div class="form-group col-md-6">
       {!! Form::label('rep_status','حالة الإصلاح:') !!}
-      {!! Form::select('rep_status',[0=>'إختر','جاري الإصلاح'=>'جاري الإصلاح','تم'=>'تم',],null,['class' => 'form-control']) !!}
+      {!! Form::select('rep_status',[''=>'إختر','جاري الإصلاح'=>'جاري الإصلاح','تم'=>'تم',],null,['class' => 'form-control']) !!}
       </div>
       <div class="form-group col-md-12">
       {!! Form::label('rep_details','تفاصيل الإصلاح:') !!}
@@ -49,7 +50,8 @@
 
             <div class="col-md-8 form-group">
 
-              <select class="form-control selectpicker selectpicker2  bs-select-hidden" data-live-search="true" name="technicans[]"><option value="" class="bs-title-option">إختر...</option>
+              <select class="form-control selectpicker selectpicker2  bs-select-hidden" data-live-search="true" name="technicans[]">\
+        <option value="" class="bs-title-option">إختر...</option>
                 @foreach($technicans as $key => $tech)
         <option value = {{ $key }} >{{ $tech }}</option>
                 @endforeach</select>
@@ -90,7 +92,7 @@
 <div class="form-group fields1">
 <div class="col-md-9 aaa">
 
-     <div class="col-md-8 form-group">
+     <div class="col-md-6 form-group">
 
      <select class="form-control selectpicker bs-select-hidden" data-live-search="true" name="part_id[]">
         @foreach($parts as $key => $pid)
@@ -162,7 +164,7 @@ $(function() {
         </script>
         <script type="text/javascript">
     			  $('.selectpicker').selectpicker({
-              title : "إختر..."
+              title : "إختر...",
 
     				});
     		</script>

@@ -37,4 +37,14 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
     protected $primaryKey = 'user_id';
+
+    public function repairs(){
+      return $this->HasMany('App\Repair');
+    }
+    public function failures(){
+      return $this->HasMany('App\Failure');
+    }
+    public function tasks(){
+      return $this->HasMany('App\Task');
+    }
 }

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 use App\Failure;
 use App\Machine;
-
+use Illuminate\Http\Request;
 use App\Http\Requests\ReportFailureRequest;
 use App\Http\Controllers\Controller;
 use DB;
 use Gate;
+use Excel;
 
 class FailuresController extends Controller
 {
@@ -24,6 +25,43 @@ class FailuresController extends Controller
     $page_title = "الأعطال";
     $page_description = "سجل الأعطال";
         return view('failures/index',compact('failures','page_title','page_description','section_title'));
+    }
+    public function export()
+    {
+return view('failures.export');
+    }
+    public function download(Request $request)
+    {
+    //  return $request->period;
+      $date = date('Y-m-d');
+      Excel::create("تقرير أعطال-".date('Y-m-d'), function($excel) use($request) {
+      $author = $request->author;
+        // Set the title
+$excel->setTitle('تقرير أعطال');
+
+// Chain the setters
+$excel->setCreator($author)
+      ->setCompany('شركة بشير السكسك');
+///*----------- sheet----------*///
+      $excel->sheet('sheet', function($sheet) use($request) {
+        $sheet->setRightToLeft(true);
+
+    //  $sheet->mergeCells('A1:G1');
+        $sheet->setFontFamily('Arial');
+      $scope = $request->period;
+      if ($scope == 'DateRange' ) {
+        $date1 = $request->date1;
+        $date2 = $request->date2;
+        $failures = Failure::$scope($date1,$date2);
+      }
+      else{
+      $failures = Failure::$scope();
+    }
+        $sheet->loadView('failures.table',compact('failures'));
+
+    });
+
+})->export('xls');
     }
 
     /**

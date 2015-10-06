@@ -22,6 +22,8 @@ class CreateRepairsTable extends Migration
             $table->timestamps();
             $table->integer('fail_id')->unsigned();
             $table->foreign('fail_id')->references('fail_id')->on('failures')->onDelete('cascade');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('user_id')->on('users');
         });
 
     }

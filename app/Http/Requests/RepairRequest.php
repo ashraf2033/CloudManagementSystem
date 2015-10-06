@@ -24,10 +24,11 @@ class RepairRequest extends Request
     public function rules()
     {
         return [
-
             'rep_dur'=>'required',
-            'rep_details'=>'required'
-
-        ];
+            'rep_details'=>'required',
+            'rep_date'=>'required',
+            'rep_status'=>'required',
+            'technicans'=>'exists:technicans,id',
+        ]);
     }
 }

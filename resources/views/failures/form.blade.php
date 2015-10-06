@@ -1,5 +1,4 @@
 
-	<link rel="stylesheet" href="/AdminLTE-RTL/plugins/select2/select2.min.css" media="screen" title="no title" charset="utf-8">
 
 	<link rel="stylesheet" href="/AdminLTE-RTL/plugins/datepicker/datepicker3.css" media="screen" title="no title" charset="utf-8">
 	<link rel="stylesheet" href="/AdminLTE-RTL/plugins/bootstrap-select/dist/css/bootstrap-select_rtl.min.css" media="screen" title="no title" charset="utf-8">
@@ -28,7 +27,7 @@
 	</div>
 	<div class="form-group col-md-3">
 	{!! Form::label('fail_type','نوع العطل:') !!}
-
+  {!! Form::hidden('user_id',\Auth::user()->user_id ) !!}
 	<div>
 	{!! Form::radio('fail_type','ميكانيكي',null,['class' =>'radio-inline']) !!}
 	{!! Form::label('fail_type','ميكانيكي') !!}
@@ -123,7 +122,7 @@
 		<script type="text/javascript">
 			  $('.selectpicker').selectpicker({
 					title : "إختر آلة ...",
-					
+
 				});
 		</script>
 @endsection

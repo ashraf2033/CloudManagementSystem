@@ -170,7 +170,7 @@
                           @endforeach
                         </tbody>
                       @else
-                      <h3>لا يوجد إصلاحات هذا الشهر</h3>
+                      <h3>لا يوجد أعطال هذا الشهر</h3>
                           @endif
                       </table>
                     </div><!-- /table div -->
@@ -209,7 +209,7 @@
                           @endforeach
                         </tbody>
                       @else
-                      <h3>لا يوجد إصلاحات هذا الأسبوع</h3>
+                      <h3>لا يوجد أعطال هذا الأسبوع</h3>
                           @endif
                       </table>
                     </div><!-- /table div -->
@@ -247,7 +247,7 @@
                           @endforeach
                         </tbody>
                       @else
-                      <h3>لا يوجد إصلاحات هذا اليوم</h3>
+                      <h3>لا يوجد أعطال هذا اليوم</h3>
                           @endif
                       </table>
                     </div><!-- /table div -->
@@ -285,7 +285,7 @@
 
                           @foreach($repairsMonth as $key => $repairMonth)
                           <tr>
-                            <td><a href="{{ action("TasksController@show",[$repairMonth,'action'=>'TasksController@finish'])}}">{{$repairMonth->rep_id}}</a></td>
+                            <td><a href="{{ action("RepairsController@show",[$repairMonth,'action'=>'RepairsController@finish'])}}">{{$repairMonth->rep_id}}</a></td>
                             <td>{{$repairMonth->failure->fail_name}}</td>
                             <td>{{$repairMonth->failure->machine->machine_name}}</td>
                             <td>

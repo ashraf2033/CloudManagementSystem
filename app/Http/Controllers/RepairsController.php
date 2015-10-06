@@ -94,7 +94,7 @@ class RepairsController extends Controller
           'rep_details'=>'required',
           'rep_date'=>'required',
           'rep_status'=>'required',
-          'technicans'=>'required',
+          'technicans'=>'exists:technicans,id',
       ]);
       $repair = Repair::create($repairin);
       //loop throught technincans fields
@@ -115,7 +115,7 @@ class RepairsController extends Controller
         }
         }
 
-         return redirect('maintainance/repairs');
+          return redirect('maintainance/repairs');
        }
 
     /**
@@ -164,11 +164,21 @@ class RepairsController extends Controller
      * @return Response
      */
     public function update(Request $request, $id){
+
      $repair = Repair::findOrFail($id);
      $repairin = $request->all();
      $tech_arr = $request->input('technicans');
      $repairin['tech_no']= count($tech_arr);
-     $repair->update($repairin);
+
+
+     $this->validate($request, [
+         'rep_dur'=>'required',
+         'rep_details'=>'required',
+         'rep_date'=>'required',
+         'rep_status'=>'required',
+         'technicans'=>'exists:technicans,id',
+     ]);
+    $repair->update($repairin);
      //loop throught technincans fields
 
      $part_arr = $request->input('part_id');

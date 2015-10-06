@@ -96,6 +96,14 @@
  </table>
 </div>
 </div><!--/.box-body-->
+<div class="box-footer">
+<!--<a href="{{ action("MachinesController@download",2) }}" title="تصدير" aria-label="Left Align" type="button" class="btn btn-primary "><span class="fa fa-file-excel-o " aria-hidden="true"></span></a>-->
+{!! Form::open(['url' => 'machines/download']) !!}
+{!! Form::hidden('machine', $machine->machine_id) !!}
+{!! Form::button('<i class="fa fa-file-excel-o"> تصدير</i>',['class' => 'btn btn-primary','type' => 'submit' ]) !!}
+
+{!! Form::close() !!}
+</div>
  </div><!--/.box-->
  </div><!--/.col-->
 </div><!--/.row-->

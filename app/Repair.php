@@ -11,6 +11,7 @@ class Repair extends Model
 protected $fillable =[
   'rep_time',
   'rep_date',
+  'user_id',
   'rep_dur',
   'rep_details',
   'rep_status',
@@ -30,6 +31,9 @@ public function setRepDateAttribute($date)
 		}
   public function spare_parts(){
     return $this->belongsToMany('App\SparePart','part_repair','repair_id','part_id')->withPivot('part_qty');
+}
+public function user(){
+  return $this->belongsTo('App\User');
 }
 public function technicans(){
   return $this->belongsToMany('App\Technican');
@@ -69,6 +73,12 @@ public function scopeThismonth($query){
 $carbon = new Carbon;
   return $query->whereBetween(DB::raw('date(rep_date)'), [$carbon->startOfMonth()->format('y-m-d'),$carbon->
   endOfMonth()->format('Y-m-d')])->get();
+
+}
+public function scopeDateRange($query,$date1,$date2){
+
+
+  return $query->whereBetween(DB::raw('date(rep_date)'), [$date1,$date2])->get();
 
 }
 public function scopetoday($query){

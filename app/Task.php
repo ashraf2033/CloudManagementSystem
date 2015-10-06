@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    protected $fillable = ['task_name','task_date','task_status','task_type','tech_name','tech_id','machine_id'];
+    protected $fillable = ['task_name','task_date','user_id','task_status','task_type','tech_name','tech_id','machine_id'];
 protected $dates = ['task_date','created_at','updated_at'];
     protected $primaryKey = 'task_id';
     public function machine(){
       return $this->belongsTo('App\Machine');
     }
-
+    public function user(){
+      return $this->belongsTo('App\User');
+    }
     public function technican(){
       return $this->HasOne('App\Technican','id','tech_id');
     }
@@ -47,6 +49,12 @@ protected $dates = ['task_date','created_at','updated_at'];
     public function scopetoday($query){
 
       return $query->where('task_date','=',Carbon::today())->get();
+
+    }
+
+    public function scopeDateRange($query,$date1,$date2){
+
+      return $query->whereBetween(DB::raw('date(task_date)'), [$date1,$date2])->get();
 
     }
     public function scopeThismonth($query){

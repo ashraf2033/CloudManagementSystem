@@ -60,12 +60,16 @@ class TasksController extends Controller
       // get all task data
         $taskin = $request->all();
         //create new task
-        $task = Task::create($taskin);
-
         $this->validate($request, [
                'task_status' => 'required',
                'task_name' => 'required',
+               'tech_id' => 'required',
+               'machine_id' => 'required',
            ]);
+
+        $task = Task::create($taskin);
+
+
         //attaching spare_parts
 
         $part_arr = $request->input('part_id');

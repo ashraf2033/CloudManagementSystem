@@ -1,4 +1,4 @@
-  <?php
+<?php
 use App\Failure;
 use Jenssegers\Date\Date;
 /*
@@ -15,6 +15,10 @@ Route::get('/home', function () {
 
     return redirect('/dash');
 });
+Route::get('/table', function () {
+$failures = Failure::all();
+    return view('failures.table',compact('failures'));
+});
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -30,7 +34,10 @@ Route::get('/dash',['middleware' => 'auth', function () {
 Route::get('/maintainance','PagesController@maintainance');
 Route::get('/check','PagesController@check');
 Route::get('/','PagesController@home');
+Route::get('/maintainance/failures/export','FailuresController@export');
+Route::post('/maintainance/failures/download','FailuresController@download');
 Route::resource('/maintainance/failures','FailuresController');
+Route::post('/machines/download','MachinesController@download');
 Route::resource('/machines','MachinesController');
 Route::resource('/spareparts','SparePartsController');
 Route::put('/maintainance/repairs/approve/{repairs}','RepairsController@approve');

@@ -10,7 +10,7 @@ class Failure extends Model
 {
     //
      protected $fillable =
-      ['fail_name','machine_id','fail_time','fail_type','shift','fail_details','fail_importance','fail_notes'];
+      ['fail_name','machine_id','user_id','fail_time','fail_type','shift','fail_details','fail_importance','fail_notes'];
  protected $dates =['created_at','updated_at','fail_time'];
          protected $primaryKey = 'fail_id';
 
@@ -25,6 +25,9 @@ public function setFailTimeAttribute($date)
 		}
 public function machine(){
   return $this->belongsTo('App\Machine');
+}
+public function user(){
+  return $this->belongsTo('App\User');
 }
 public function repair(){
   return $this->hasOne('App\Repair','fail_id','fail_id');
@@ -51,6 +54,12 @@ $carbon = new Carbon;
   endOfMonth()->format('Y-m-d')])->get();
 
 }
+public function scopeDateRange($query,$date1,$date2){
+
+  return $query->whereBetween(DB::raw('date(fail_time)'), [$date1,$date2])->get();
+
+}
+
 public function scopetoday($query){
 
   return $query->

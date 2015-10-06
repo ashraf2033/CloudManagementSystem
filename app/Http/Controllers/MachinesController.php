@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Machine;
 use App\Failure;
 use App\Repair;
+use Excel;
 
 class MachinesController extends Controller
 {
@@ -22,6 +23,32 @@ class MachinesController extends Controller
         $machines = Machine::all();
 
         return view('machines.machines_index',compact('machines'));
+    }
+    public function download(Request $request)
+    {
+    //  return $request->period;
+      $date = date('Y-m-d');
+      Excel::create("سجل ماكينة-".date('Y-m-d'), function($excel) use($request) {
+      $author = $request->author;
+        // Set the title
+  $excel->setTitle('سجل ماكينة');
+
+  // Chain the setters
+  $excel->setCreator($author)
+      ->setCompany('شركة بشير السكسك');
+  ///*----------- sheet----------*///
+      $excel->sheet('sheet', function($sheet) use($request) {
+        $sheet->setRightToLeft(true);
+
+    //  $sheet->mergeCells('A1:G1');
+        $sheet->setFontFamily('Arial');
+      $machine = Machine::findOrFail($request->machine);
+      $failures = $machine->failure;
+    $sheet->loadView('machines.table',compact('machine','failures'));
+
+    });
+
+  })->export('xls');
     }
 
     /**

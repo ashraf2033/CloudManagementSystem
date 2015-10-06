@@ -80,10 +80,6 @@
   <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">
   إعتماد</button>
 
-
-
-
-
   <!-- Modal -->
   @include('partials.modal',[
     'model' => "$repair",
