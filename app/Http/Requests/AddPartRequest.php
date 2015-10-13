@@ -25,7 +25,7 @@ class AddPartRequest extends Request
     {
         return [
               'part_name'=>'required',
-              'part_stock'=>'required',
+        
               'part_store'=>'required'
         ];
     }

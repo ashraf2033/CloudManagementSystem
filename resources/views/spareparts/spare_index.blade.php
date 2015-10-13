@@ -17,12 +17,7 @@
 <div class="box-body">
 <div class="row">
   <div class="col-md-12">
-<div class="col-md-1 pull-right">
 
-<a href="{{ action("SparePartsController@create")}}">
-    <button class="btn btn-primary " type="button" name="new">إضافة</button>
-    </a>
-</div>
   </div>
 </div>
 <div><!--table-->
@@ -31,7 +26,7 @@
   	<tr>
   	<th style="text-align:right">#</th>
      <th style="text-align:right">الإسم</th>
-  	<th style="text-align:right">الكمية</th>
+
   	<th style="text-align:right">المخزن</th>
   	<th style="text-align:right">خيارات</th>
   	</tr>
@@ -44,13 +39,12 @@
 
     <td>{{ $part->part_id }}</td>
     <td>{{ $part->part_name }}</td>
-    <td>{{ $part->part_stock }}</td>
     <td>{{ $part->part_store }}</td>
 
     <td>
 
       <a href="{{ action("SparePartsController@edit",$part)}}" title="تعديل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit " aria-hidden="true"></span></a>
-      <a href="" title="تفاصيل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign " aria-hidden="true"></span></a>
+      <a href="{{ action("SparePartsController@show",$part)}}" title="تفاصيل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign " aria-hidden="true"></span></a>
 
     </td>
   </tr>
@@ -59,6 +53,11 @@
  </table>
 </div>
 </div><!--/.box-body-->
+<div class="box-footer">
+  <a href="{{ action("SparePartsController@create")}}">
+      <button class="btn btn-primary " type="button" name="new">إضافة</button>
+      </a>
+</div>
  </div><!--/.box-->
  </div><!--/.col-->
 </div><!--/.row-->

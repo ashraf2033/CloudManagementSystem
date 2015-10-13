@@ -15,5 +15,7 @@ public function repair(){
 public function task(){
   return $this->belongsToMany('App\Task')->withPivot('part_qty');
 }
-
+public function trans(){
+  return $this->HasMany('App\Trans','part_id');
+}
 }

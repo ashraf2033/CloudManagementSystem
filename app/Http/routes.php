@@ -48,4 +48,5 @@ Route::resource('/maintainance/repairs','RepairsController');
 Route::resource('/technicans','TechnicansController');
 Route::patch('/maintainance/tasks/finish/{repairs}','TasksController@finish');
 Route::resource('/maintainance/tasks','TasksController');
+Route::resource('/transes','TransesController');
 //Route::get('/failures','FailuresController@index');

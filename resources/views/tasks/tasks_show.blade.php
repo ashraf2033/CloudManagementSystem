@@ -36,11 +36,37 @@
     </tr>
   </tbody>
   </table>
+  <h4>قطع الغيار:</h4>
+  <table class="table table-striped table-bordered table-hover ">
+    @if(count($task->parts->toArray()) != 0)
+    <thead>
+    <tr>
+      <th>الصنف</th>
+      <th>الكمية </th>
+    </tr>
+    </thead>
+    <tbody>
+
+    @foreach($task->parts as $part)
+    <tr>
+      <td>{{ $part->part_name }}</td>
+      <td>{{ $part->pivot->part_qty }}</td>
+   </tr>
+    @endforeach
+      @else
+      <h4> لم يتم إستخدام قطع غيار في هذه العملية</h4>
+      @endif
+  </tbody>
+
+  </table >
 </div><!--/box-body-->
 <div class="box-footer">
   <!-- Button trigger modal -->
+  @if(Input::get('action') == 'SparePartsController@show')
+@else
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
 <span class="glyphicon glyphicon-ok"></span>إعتماد</button>
+@endif
 </div>
 <!-- Modal -->
 @include('partials.modal',[

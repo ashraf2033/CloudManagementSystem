@@ -77,8 +77,11 @@
 
     </div><!--/Box-body-->
 <div class="box-footer">
+  @if(Input::get('action') == 'SparePartsController@show')
+@else
   <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">
   إعتماد</button>
+  @endif
 
   <!-- Modal -->
   @include('partials.modal',[

@@ -54,7 +54,20 @@ class SparePartsController extends Controller
      */
     public function show($id)
     {
-        //
+$part = SparePart::findOrFail($id);
+$repstock = $part->repair()->lists('part_qty')->sum();
+$reps = $part->repair;
+$taskstock = $part->task()->lists('part_qty')->sum();
+$tasks = $part->task;
+$transsub=$part->trans()->where('type','-')->lists('part_qty')->sum();
+$substock = $repstock + $taskstock+$transsub;
+
+$transadd=$part->trans()->where('type','+')->lists('part_qty')->sum();
+$transes=$part->trans;
+$addstock = $transadd;
+$stock = $addstock - $substock;
+$recs = collect([$transes,$tasks,$reps])->collapse()->sortBy('created_at');
+      return view('spareparts.spare_show',compact('part','stock','recs'));
     }
 
     /**
