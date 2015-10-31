@@ -15,6 +15,16 @@
 	</div>
 
 </div>
+<div class="container col-md-12">
+
+	<div class="form-group col-md-6">
+	{!! Form::label('part_qty','الرصيد الإفتتاحي') !!}
+ <input class="form-control" name="part_qty" type="number">
+ {!! Form::hidden('note','الرصيد الإفتتاحي') !!}
+
+	</div>
+
+</div>
 
 	<div class="container col-md-12">
 		<div class="form-group col-md-6">

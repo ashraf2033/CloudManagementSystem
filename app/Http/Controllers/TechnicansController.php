@@ -53,6 +53,13 @@ class TechnicansController extends Controller
      */
     public function show($id)
     {
+$tech = Technican::findOrFail($id);
+$reps = $tech->repair()->approved();
+$tasks = $tech->task;
+$recs = collect([$tasks,$reps])->collapse()->sortBy('created_at');
+
+return view('technicans.tech_show',compact('tech','recs'));
+//return dd($technican);
 
     }
 

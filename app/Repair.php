@@ -42,17 +42,17 @@ public function failure(){
   return $this->belongsTo('App\Failure','fail_id','fail_id');
 }
 public function scopeRunning($query){
-  $query->where('rep_status','=' ,'جاري الإصلاح');
+  return $query->where('rep_status','=' ,'جاري الإصلاح');
 }
 
 public function scopeFinished($query){
-  $query->where('rep_status','=' ,'تم');
+return  $query->where('rep_status','=' ,'تم')->get();
 }
 public function scopeNotApproved($query){
-  $query->where('rep_status','!=' ,'تم الإعتماد');
+  return $query->where('rep_status','!=' ,'تم الإعتماد')->get();
 }
 public function scopeApproved($query){
-  $query->where('rep_status','=' ,'تم الإعتماد');
+  return $query->where('rep_status','=' ,'تم الإعتماد')->get();
 }
 public function scopeThisWeek($query){
 

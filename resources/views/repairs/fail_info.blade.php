@@ -2,7 +2,7 @@
 <div class="col-md-12">
   <div class="box box-primary">
    <div class="box-header with-border">
-<h4 class="box-title">معلومات العطل</h4>
+<h4 class="box-title">تفاصيل العطل : {{$fail->fail_name}}</h4>
 <div class="box-tools pullright">
 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 </div>

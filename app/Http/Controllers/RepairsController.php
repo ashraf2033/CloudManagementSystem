@@ -31,7 +31,7 @@ class RepairsController extends Controller
     public function index()
     {
       $page_title= 'الإصلاحات';
-      $repairs = Repair::NotApproved()->get();
+      $repairs = Repair::NotApproved();
       $modal_title= "حذف تقرير";
       $modal_body= "هل تريد حذف هذا التقرير";
 
@@ -41,12 +41,22 @@ class RepairsController extends Controller
     public function waiting()
     {
       $page_title= 'الإصلاحات';
-      $repairs = Repair::Finished()->get();
+      $repairs = Repair::Finished();
       $modal_title= "حذف تقرير";
       $modal_body= "هل تريد حذف هذا التقرير";
 
 
         return view('repairs.waiting',compact('page_title','repairs','modal_title','modal_body'));
+    }
+    public function archive()
+    {
+      $page_title= 'أرشيف الإصلاحات';
+      $repairs = Repair::Approved()->sortByDesc('created_at');
+      $modal_title= "حذف تقرير";
+      $modal_body= "هل تريد حذف هذا التقرير";
+
+
+        return view('repairs.archive',compact('page_title','repairs','modal_title','modal_body'));
     }
 
     /**
@@ -56,9 +66,9 @@ class RepairsController extends Controller
      */
     public function create(Request $request)
     {
-      if (Gate::denies('maintain')) {
+    /*  if (Gate::denies('maintain')) {
         abort(403, 'هذا الإجراء ليس من صلاحياتك');
-      }
+      }*/
       $page_title = "تقرير إصلاح";
       $id=$request->input('failure');
       $part_names = DB::table('spare_parts')->lists('part_name');
@@ -86,9 +96,9 @@ class RepairsController extends Controller
       $repairin['fail_id']=$request->input('fail_id');
 
       //create new repair
-      if (Gate::denies('maintain')) {
+    /*  if (Gate::denies('maintain')) {
         abort(403, 'هذا الإجراء ليس من صلاحياتك');
-      }
+      }*/
       $this->validate($request, [
           'rep_dur'=>'required',
           'rep_details'=>'required',
@@ -114,7 +124,9 @@ class RepairsController extends Controller
           $part_obj->repair()->attach($rep_id,['part_qty'=> $qty]);
         }
         }
-
+        $fail = Failure::findOrFail($repairin['fail_id']);
+        $fail->status = 1;
+        $fail->save();
           return redirect('maintainance/repairs');
        }
 
@@ -218,9 +230,9 @@ class RepairsController extends Controller
     public function approve(Request $request, $id){
 
         $repair = Repair::findOrFail($id);
-        if (Gate::denies('produce')) {
+      /*  if (Gate::denies('produce')) {
             abort(403,'هذا الإجراء ليس من صلاحياتك');
-        }
+        }*/
 
         $repair->update(['rep_status'=>'تم الإعتماد']);
 
@@ -228,9 +240,9 @@ class RepairsController extends Controller
 
     }
     public function finish(Request $request, $id){
-      if (Gate::denies('maintain')) {
+    /*  if (Gate::denies('maintain')) {
         abort(403, 'هذا الإجراء ليس من صلاحياتك');
-      }
+      }*/
         $repair = Repair::findOrFail($id);
         $repair->update(['rep_status'=>'تم']);
 

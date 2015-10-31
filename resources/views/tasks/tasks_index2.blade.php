@@ -5,7 +5,7 @@
   <div class="col-xs-12">
       <div class="box box-primary">
       <div class="box-header">
-  <h3 class="box-title">مهمات مجدولة</h3>
+  <h3 class="box-title">أرشيف مهام الصيانة الوقائية</h3>
     </div><!--.box header-->
 <div class="box-body">
 <div class="row">
@@ -24,8 +24,8 @@
   	<th style="text-align:right">موعد المهمة</th>
   	<th style="text-align:right">الحالة</th>
   	<th style="text-align:right">نوع الصيانة</th>
-  {{--	<th style="text-align:right">المسؤول</th>
-  	<th style="text-align:right">قطع غيار</th>--}}
+  	<th style="text-align:right">المسؤول</th>
+  	<th style="text-align:right">قطع غيار</th>
   	<th style="text-align:right">خيارات</th>
   	</tr>
   	</thead>
@@ -41,12 +41,14 @@
       <td>{{ $task->task_status|"" }}</td>
       <td>{{ $task->task_type }}</td>
 
-      {{--}}<td>{{ $task->parts()->lists('part_name')->implode(',') }}</td>--}}
+      <td>{{$task->technican()->lists('tech_name')->implode(',')}}</td>
+
+
+      <td>{{ $task->parts()->lists('part_name')->implode(',') }}</td>
 
 
     <td>
-      <a href="{{ action("TasksController@edit",$task)}}" title="تعديل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit " aria-hidden="true"></span></a>
-      <a href="{{ action("TasksController@show",[$task,'action'=>'TasksController@finish'])}}" title="تمت" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ok " aria-hidden="true"></span></a>
+      <a href="{{ action("TasksController@show",[$task,'action'=>'TasksController@show'])}}" title="تفاصيل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign " aria-hidden="true"></span></a>
   	</td>
     </td>
   </tr>

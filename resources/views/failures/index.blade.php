@@ -53,9 +53,9 @@
 
   	<td>
   		<a href="{{ action("FailuresController@show",$failure)}}" title="تفاصيل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign " aria-hidden="true"></span></a>
-  	@can('maintain')
+{{--	@can('maintain')--}}
     <a href="{{ action("RepairsController@create",['failure'=>$failure])}}" title="إصلاح" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-wrench " aria-hidden="true"></span></a>
-  		@endcan
+  	{{--	@endcan --}}
   	</td>
   </tr>
   	@endforeach

@@ -24,6 +24,7 @@ class CreateFailuresTable extends Migration
             $table->text('fail_notes');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('user_id')->on('users');
+            $table->integer('status');
             $table->timestamps();
 
         });

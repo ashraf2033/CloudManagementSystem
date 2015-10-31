@@ -105,12 +105,12 @@
                           <tr>
                             <td><a href="{{ action("TasksController@show",[$taskToday,'action'=>'TasksController@finish'])}}">{{$taskToday->task_id}}</a></td>
                             <td>{{$taskToday->task_name}}</td>
-                            <td>{{$taskToday->machine->machine_id}}</td>
+                            <td>{{$taskToday->machine->machine_name}}</td>
                             <td>
-                              @if($taskWeek->task_status == "مجدولة")
-                              <span class="label label-primary">{{$taskWeek->task_status}}</span>
-                              @elseif($taskWeek->task_status == "تمت")
-                              <span class="label label-success">{{$taskWeek->task_status}}</span>
+                              @if($taskToday->task_status == "مجدولة")
+                              <span class="label label-primary">{{$taskToday->task_status}}</span>
+                              @elseif($taskToday->task_status == "تمت")
+                              <span class="label label-success">{{$taskToday->task_status}}</span>
                               @endif
                               </td>
                           </tr>

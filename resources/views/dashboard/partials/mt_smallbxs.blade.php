@@ -30,7 +30,7 @@
     <div class="small-box bg-red">
       <div class="inner">
         <h3>{{ $fails_count }}</h3>
-        <h4>أعطال تم التبليغ عنها اليوم</h4>
+        <h4>أعطال لم يتم إصلاحها بعد</h4>
       </div>
       <div class="icon">
                     <i class="ion ion-alert-circled"></i>
@@ -43,7 +43,7 @@
     <div class="small-box bg-yellow">
       <div class="inner">
         <h3>{{ $repairs_count }}</h3>
-        <h4>إصلاحات جارية</h4>
+        <h4>إصلاحات بإنتظار الإعتماد</h4>
       </div>
       <div class="icon">
                     <i class="ion ion-wrench"></i>

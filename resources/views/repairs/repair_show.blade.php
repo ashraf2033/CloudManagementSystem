@@ -76,9 +76,9 @@
 
 
     </div><!--/Box-body-->
-<div class="box-footer">
-  @if(Input::get('action') == 'SparePartsController@show')
+  @if(Input::get('action') == 'RepairsController@show')
 @else
+<div class="box-footer">
   <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">
   إعتماد</button>
   @endif

@@ -29,9 +29,9 @@
 <div class="container col-md-12">
 	<div class="form-group col-md-6">
 	{!! Form::label('machine_id','الآلة:') !!}
-  {!! Form::select('machine_id',[""=>"aaaa"]+$machines,null,['class' => 'form-control']) !!}
+  {!! Form::select('machine_id',[""=>"إختر"]+$machines,null,['class' => 'form-control']) !!}
 	</div>
-	<div class="form-group col-md-6">
+{{--	<div class="form-group col-md-6">
 	{!! Form::label('tech_id','الفني:') !!}
 
 
@@ -40,22 +40,25 @@
 <option value = {{ $key }} >{{ $tech }}</option>
 			@endforeach</select>
 
-	</div>
-</div>
-<div class="container col-md-12">
+	</div>--}}
 	<div class="form-group col-md-6">
 	{!! Form::label('task_type','نوع الصيانة:') !!}
-  {!! Form::text('task_type',null,['class' => 'form-control']) !!}
+	{!! Form::text('task_type',null,['class' => 'form-control']) !!}
 	</div>
 	<div class="form-group col-md-6">
-  {!! Form::hidden('task_status','مجدولة',['class' => 'form-control']) !!}
+	{!! Form::hidden('task_status','مجدولة',['class' => 'form-control']) !!}
 	</div>
 </div>
+
+
+
+{{--
 <div class="col-md-12">
 <div class="col-md-6">
-	{!! Form::label('machine_id','مستلزمات قطع الغيار:') !!}
+	{!! Form::label('parts','مستلزمات قطع الغيار:') !!}
 </div>
 </div>
+
 <div class="container col-md-12">
 
 	<div class="input_fields_wrap1 form-group">
@@ -75,6 +78,7 @@
 
 	  <input class="form-control" placeholder="الكمية" name="part_qty[]" type="number">
 	  </div>
+
 	</div>
 
 	<button class="btn btn-primary fa fa-plus addButton" type="button" name="button"></button>
@@ -84,6 +88,7 @@
 	</div>
 
 </div><!--/box-body-->
+ --}}
 <div class="box-footer">
 <div class="col-md-12">
 
@@ -101,6 +106,8 @@
 </div>
 </div>
 </div><!--/box-->
+
+
 
 {!! Form::close() !!}
 

@@ -8,6 +8,7 @@ use App\Http\Requests\AddPartRequest;
 
 use App\Http\Controllers\Controller;
 use App\SparePart;
+use App\Trans;
 
 class SparePartsController extends Controller
 {
@@ -42,7 +43,9 @@ class SparePartsController extends Controller
      */
     public function store(AddPartRequest $request)
     {
-    SparePart::create($request->all());
+    $part = SparePart::create($request->except('part_qty','note'));
+    Trans::create(['part_qty'=>$request->part_qty,'note'=>$request->note,'part_id'=>$part->part_id,'type'=>'+']);
+
     return redirect('/spareparts');
     }
 

@@ -19,7 +19,7 @@ class FailuresController extends Controller
      */
     public function index()
     {
-		$failures = Failure::all();
+		$failures = Failure::waiting();
     $section_title ="الصيانة";
 
     $page_title = "الأعطال";
@@ -75,9 +75,9 @@ $excel->setCreator($author)
       $machine_names = DB::table('machines')->lists('machine_name');
       $machine_ids = DB::table('machines')->lists('machine_id');
       $machine_list= array_combine($machine_ids,$machine_names);
-      if(Gate::denies('produce')){
+    /*  if(Gate::denies('produce')){
         abort(403, 'أنت غير مخول بالقيام بهذا الفعل');
-      }
+      }*/
 		return view('failures/create',compact('page_title','section_title','machine_list'));
 
     }

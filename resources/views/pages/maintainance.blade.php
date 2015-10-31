@@ -30,7 +30,7 @@
 <tr>
 <td>{{ $failure->fail_id }}</td>
 <td>{{ $failure->fail_name }}</td>
-<td>{{ $failure->machine_id}}</td>
+<td>{{ $failure->machine->machine_name}}</td>
 <td>{{ $failure->fail_time->format('Y-m-d') }}</td>
 <td>{{ $failure->fail_type }}</td>
 <td>{{ $failure->shift }}</td>
@@ -128,7 +128,7 @@
         </table>
       </div>
 <div class="box-footer">
- <a class="btn btn-primary pull-right" href="maintainance/repairs/waiting">المـزيـد</a>
+ <a class="btn btn-primary pull-right" href="maintainance/repairs/archive">المـزيـد</a>
 </div>
     </div><!---/Box--->
   </div>

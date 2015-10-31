@@ -33,10 +33,14 @@
       </li>
       <li class="header">قسم الصيانة</li>
       <li class="treeview">
-        <a href="{{ action('PagesController@check') }}">
+        <a href="{{ action('TasksController@index') }}">
           <i class="fa fa-life-ring"></i>
           <span>الصيانة الوقائية</span>
         </a>
+        <ul class="treeview-menu">
+          <li><a href="{{ action('TasksController@index') }}"><i class="fa fa-circle-o"></i>الرئيسية</a></li>
+          <li><a href="{{ action('TasksController@index2') }}"><i class="fa fa-circle-o"></i>أرشيف المهام</a></li>
+        </ul>
       </li>
       <li class="treeview">
         <a href="{{ action('PagesController@maintainance') }}">
@@ -47,8 +51,11 @@
           <li><a href="{{ action('PagesController@maintainance') }}"><i class="fa fa-circle-o"></i>الرئيسية</a></li>
           <li><a href="{{ action('FailuresController@index') }}"><i class="fa fa-circle-o"></i>سجل الأعطال</a></li>
           <li><a href="{{ action('RepairsController@index') }}"><i class="fa fa-circle-o"></i>الإصلاحات</a></li>
+          <li><a href="{{ action('RepairsController@waiting') }}"><i class="fa fa-circle-o"></i>إصلاحات بإنتظار الإعتماد</a></li>
+          <li><a href="{{ action('RepairsController@archive') }}"><i class="fa fa-circle-o"></i>أرشيف الإصلاحات</a></li>
         </ul>
       </li>
+      <!--
   <li class="header">قسم الإنتاج</li>
       <li class="treeview">
         <a href="">
@@ -56,12 +63,14 @@
       <span>قسم الإنتاج</span>
 
     </a>
+
     <ul class="treeview-menu">
       <li><a href="../layout/top-nav.html"><i class="fa fa-cog"></i> فرعي</a></li>
       <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> فرعي</a></li>
       <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> فرعي</a></li>
     </ul>
   </li>
+    -->
     <li class="header">المصنع</li>
   <li class="treeview">
     <a href="{{ action('TechnicansController@index') }}">

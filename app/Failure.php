@@ -11,7 +11,7 @@ class Failure extends Model
     //
      protected $fillable =
       ['fail_name','machine_id','user_id','fail_time','fail_type','shift','fail_details','fail_importance','fail_notes'];
- protected $dates =['created_at','updated_at','fail_time'];
+ protected $dates =['created_at','updated_at','fail_time','status'];
          protected $primaryKey = 'fail_id';
 
 public function setFailTimeAttribute($date)
@@ -64,6 +64,11 @@ public function scopetoday($query){
 
   return $query->
   whereBetween('fail_time',[Carbon::today(),Carbon::today()->endOfDay()])->get();
+
+}
+public function scopeWaiting($query){
+
+  return $query->where('status',0)->get();
 
 }
 }

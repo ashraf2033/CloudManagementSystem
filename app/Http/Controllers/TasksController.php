@@ -22,8 +22,14 @@ class TasksController extends Controller
     public function index()
     {
         $page_title = "الصيانة الوقائية";
-        $tasks = Task::all();
+        $tasks = Task::Unfinished();
         return view('tasks.tasks_index',compact('tasks','page_title'));
+    }
+    public function index2()
+    {
+        $page_title = "الصيانة الوقائية";
+        $tasks = Task::Finished();
+        return view('tasks.tasks_index2',compact('tasks','page_title'));
     }
 
     /**
@@ -33,20 +39,20 @@ class TasksController extends Controller
      */
     public function create()
     {
-      if (Gate::denies('maintain')) {
+    /*  if (Gate::denies('maintain')) {
         abort(403, 'هذا الإجراء ليس من صلاحياتك');
-      }
-      $part_names = DB::table('spare_parts')->lists('part_name');
+      }*/
+    /*  $part_names = DB::table('spare_parts')->lists('part_name');
       $part_ids = DB::table('spare_parts')->lists('part_id');
-      $parts=array_combine($part_ids,$part_names);
+      $parts=array_combine($part_ids,$part_names); */
       $machine_names = DB::table('machines')->lists('machine_name');
       $machine_ids = DB::table('machines')->lists('machine_id');
       $machines = array_combine($machine_ids,$machine_names);
-      $technican_names = DB::table('technicans')->lists('tech_name');
+    /*  $technican_names = DB::table('technicans')->lists('tech_name');
       $technican_ids = DB::table('technicans')->lists('id');
-      $technicans = array_combine($technican_ids,$technican_names);
+      $technicans = array_combine($technican_ids,$technican_names); */
 
-      return view('tasks.tasks_create',compact('machines','technicans','parts'));
+      return view('tasks.tasks_create',compact('machines'));
     }
 
     /**
@@ -63,15 +69,16 @@ class TasksController extends Controller
         $this->validate($request, [
                'task_status' => 'required',
                'task_name' => 'required',
-               'tech_id' => 'required',
+              // 'tech_id' => 'required',
                'machine_id' => 'required',
+               'task_date' =>'required'
            ]);
 
         $task = Task::create($taskin);
 
 
         //attaching spare_parts
-
+/*
         $part_arr = $request->input('part_id');
         $qty_arr = $request->input('part_qty');
           foreach ($part_arr as $key => $part){
@@ -82,7 +89,7 @@ class TasksController extends Controller
             $part_obj->task()->attach($task_id,['part_qty'=> $qty]);
 
     }
-  }
+  }*/
         return redirect('maintainance/tasks');
 }
     /**
@@ -94,8 +101,13 @@ class TasksController extends Controller
     public function show($id)
     {
         $task = Task::findOrFail($id);
-
-        return view('tasks.tasks_show',compact('task'));
+        $part_names = DB::table('spare_parts')->lists('part_name');
+         $part_ids = DB::table('spare_parts')->lists('part_id');
+         $parts=array_combine($part_ids,$part_names);
+         $technican_names = DB::table('technicans')->lists('tech_name');
+           $technican_ids = DB::table('technicans')->lists('id');
+           $technicans = array_combine($technican_ids,$technican_names);
+        return view('tasks.tasks_show',compact('task','technicans','parts'));
     }
 
     /**
@@ -133,9 +145,9 @@ class TasksController extends Controller
       $taskin = $request->all();
 
       $task->update($taskin);
-      //loop throught technincans fields
+      //loop through technincans fields
 
-      $part_arr = $request->input('part_id');
+    /*  $part_arr = $request->input('part_id');
       $qty_arr = $request->input('part_qty');
         $task->parts()->detach();
         foreach ($part_arr as $key => $part){
@@ -145,10 +157,34 @@ class TasksController extends Controller
           $qty=$qty_arr[$key];
           $part_obj->task()->attach($task_id,['part_qty'=> $qty]);
         }
-        }
+      }*/
           return redirect('maintainance/tasks');
 
     }
+    public function finish(Request $request, $id){
+
+        $task = Task::findOrFail($id);
+        $task->update(['task_status'=>'تمت']);
+            $task_id = $task->task_id;
+        $tech = $request->tech_id;
+        $technican = Technican::findOrFail($tech);
+        $technican->task()->attach($task_id);
+        //attaching spare_parts
+        $part_arr = $request->input('part_id');
+        $qty_arr = $request->input('part_qty');
+          foreach ($part_arr as $key => $part){
+            if($part != 0){
+            $part_obj = SparePart::find($part);
+            $qty=$qty_arr[$key];
+            $part_obj->task()->attach($task_id,['part_qty'=> $qty]);
+
+    }
+  }
+        return redirect('maintainance/tasks');
+
+    }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -162,13 +198,6 @@ class TasksController extends Controller
       $task->delete();
       return redirect('maintainance/tasks');
     }
-    public function finish(Request $request, $id){
 
-        $task = Task::findOrFail($id);
-        $task->update(['task_status'=>'تمت']);
-
-        return redirect('maintainance/tasks');
-
-    }
 
 }

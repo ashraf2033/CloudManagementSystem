@@ -10,12 +10,7 @@
 <div class="box-body">
 <div class="row">
   <div class="col-md-12">
-<div class="col-md-1 pull-right">
 
-<a href="{{ action("TechnicansController@create")}}">
-    <button class="btn btn-primary " type="button" name="new">إضافة</button>
-    </a>
-</div>
   </div>
 </div>
 <div><!--table-->
@@ -25,6 +20,7 @@
   	<th style="text-align:right">#</th>
      <th style="text-align:right">الإسم</th>
      <th style="text-align:right">المجال</th>
+
   	<th style="text-align:right">خيارات</th>
   	</tr>
   	</thead>
@@ -36,7 +32,7 @@
     <td>{{ $technican->tech_name }}</td>
     <td>{{ $technican->tech_type }}</td>
     <td>
-      <a href="#" title="حذف" aria-label="Left Align" type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-trash " aria-hidden="true"></span></a>
+      <a href="{{action("TechnicansController@show",$technican->id )}}" title="تفاصيل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign " aria-hidden="true"></span></a>
   	</td>
 @include('partials.modal',[
   'model' => "$technican",
@@ -46,13 +42,19 @@
   'modal_title'=>'حذف فني',
   'modal_body'=>'هل تريد حذف هذا السجل'
   ])
-    </td>
+</td> --}}
   </tr>
         @endforeach
+
   	</tbody>
  </table>
 </div>
 </div><!--/.box-body-->
+<div class="box-footer">
+  <a href="{{ action("TechnicansController@create")}}">
+    <button class="btn btn-primary " type="button" name="new"><span class="glyphicon glyphicon-plus"></span> إضافة</button>
+      </a>
+</div>
  </div><!--/.box-->
  </div><!--/.col-->
 </div><!--/.row-->

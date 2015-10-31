@@ -43,10 +43,10 @@ public function check() {
             $page_title ="الصيانة التصحيحية";
             $section_title ="";
 
-          $failures = Failure::orderBy('created_at','DESC')->take(5)->get();
+          $failures = Failure::waiting()->sortByDesc('created_at')->take(5);
 
-          $finrepairs = Repair::finished()->orderBy('created_at','DESC')->take(5)->get();
-          $apprepairs = Repair::approved()->orderBy('created_at','DESC')->take(5)->get();
+          $finrepairs = Repair::finished()->sortByDesc('created_at')->take(5);
+          $apprepairs = Repair::approved()->sortByDesc('created_at')->take(5);
 
 
                 return view('pages.maintainance',compact('page_title','section_title','failures','finrepairs','apprepairs'));
@@ -60,14 +60,18 @@ public function check() {
             $month = Date::now()->format('F');
             $year = Date::now()->format('Y');
             //**************Tasks***************
+            $tasksUnfinished = Task::unfinished();
             $tasksToday = Task::orderBy('task_date','desc')->today()->take(5);$tasksWeek = Task::orderBy('task_date','desc')->thisweek()->take(5);
-            $tasksMonth = Task::orderBy('task_date','desc')->thisMonth()->take(5); $tasks_count = count($tasksToday->toArray());
+            $tasksMonth = Task::orderBy('task_date','desc')->thisMonth()->take(5); $tasks_count = count($tasksUnfinished->toArray());
             //**************Fails***************
+            $failsunfixed =Failure::waiting();
             $failsToday = Failure::orderBy('fail_time','desc')->today()->take(5);$failsWeek = Failure::orderBy('fail_time','desc')->thisweek()->take(5);
-            $failsMonth = Failure::orderBy('fail_time','desc')->thisMonth()->take(5); $fails_count = count($failsToday->toArray());
+            $failsMonth = Failure::orderBy('fail_time','desc')->thisMonth()->take(5); $fails_count = count($failsunfixed->toArray());
             //**************Repairs***************
+
+              $repairsBox = Repair::finished();
             $repairsToday = Repair::today();$repairsWeek = Repair::thisweek();
-            $repairsMonth = Repair::thisMonth(); $repairs_count = count($repairsToday->toArray());
+            $repairsMonth = Repair::thisMonth(); $repairs_count = count($repairsBox);
 
 
                       return view('dashboard.dashboard',

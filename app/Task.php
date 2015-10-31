@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    protected $fillable = ['task_name','task_date','user_id','task_status','task_type','tech_name','tech_id','machine_id'];
+    protected $fillable = ['task_name','task_date','user_id','task_status','task_type','tech_id','machine_id'];
 protected $dates = ['task_date','created_at','updated_at'];
     protected $primaryKey = 'task_id';
     public function machine(){
@@ -18,7 +18,7 @@ protected $dates = ['task_date','created_at','updated_at'];
       return $this->belongsTo('App\User');
     }
     public function technican(){
-      return $this->HasOne('App\Technican','id','tech_id');
+      return $this->belongsToMany('App\Technican');
     }
     public function parts(){
       return $this->belongsToMany('App\SparePart')->withPivot('part_qty');
@@ -63,5 +63,11 @@ protected $dates = ['task_date','created_at','updated_at'];
       return $query->whereBetween(DB::raw('date(task_date)'), [$carbon->startOfMonth()->format('y-m-d'),$carbon->
       endOfMonth()->format('Y-m-d')])->get();
 
+    }
+    public function scopeFinished($query){
+    return  $query->where('task_status','=' ,'تمت')->get();
+    }
+    public function scopeUnfinished($query){
+    return  $query->where('task_status','=' ,'مجدولة')->get();
     }
 }
