@@ -1,4 +1,4 @@
-@extends('app')
+@extends('nobarsapp')
 
 @section('content')
 <div class="container-fluid">
