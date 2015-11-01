@@ -42,7 +42,6 @@
 <td>
   <a href="{{ action("RepairsController@edit",$repair) }}" title="تعديل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit " aria-hidden="true"></span></a>
   <a href="{{ action("RepairsController@show",[$repair,'action'=>'RepairsController@approve']) }}" title="إعتماد" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ok " aria-hidden="true"></span></a>
-  <a href="#" title="حذف" aria-label="Left Align" data-toggle="modal" data-target="#myModal" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash " aria-hidden="true"></span></a>
 
 </td>
 </tr>

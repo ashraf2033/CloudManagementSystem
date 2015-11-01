@@ -53,7 +53,6 @@
     <td>
       <a href="{{ action("MachinesController@edit",$machine)}}" title="تعديل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit " aria-hidden="true"></span></a>
       <a href="{{ action("MachinesController@show",$machine)}}" title="تفاصيل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign " aria-hidden="true"></span></a>
-      	<a href="#" title="حذف" aria-label="Left Align" type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-trash " aria-hidden="true"></span></a>
 
     @include('partials.modal',[
       'model' => "$machine",
