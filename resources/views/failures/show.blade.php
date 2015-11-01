@@ -61,13 +61,13 @@
 </div>
 <div class="box-footer">
 
-  @can('maintain')
+{{--  @can('maintain') --}}
   <a href="{{ action("RepairsController@create",['failure'=>$failure])}}" title="إصلاح" aria-label="Left Align" type="button" class="btn btn-success"><span class="glyphicon glyphicon-wrench " aria-hidden="true"></span> &nbsp;إصلاح</a>
-    @endcan
-    @can('produce')
+  {{--  @endcan --}}
+  {{--  @can('produce') --}}
   <a href="{{ action("FailuresController@edit",$failure)}}" title="تعديل" aria-label="Left Align" type="button" class="btn btn-primary "><span class="glyphicon glyphicon-edit " aria-hidden="true"></span> &nbsp;تعـديل</a>
     <a href="#" title="تفاصيل" aria-label="Left Align" type="button" class="btn btn-danger " data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-trash " aria-hidden="true"></span>&nbsp;حذف</a>
-    @endcan
+  {{--  @endcan --}}
 </div>
 @include('partials.modal',[
   'model' => "$failure",

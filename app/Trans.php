@@ -10,7 +10,8 @@ protected $fillable = [
   'part_id',
   'part_qty',
   'note',
-  'type'
+  'type',
+  'user_id'
 ];
 protected $table = 'transes';
 protected  $primaryKey = 'trans_id';

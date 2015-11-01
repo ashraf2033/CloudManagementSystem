@@ -40,9 +40,9 @@
 <td>{{ $repair->technicans()->lists('tech_name')->implode(',') }}</td>
 <td>{{ $repair->spare_parts()->lists('part_name')->implode(',') }}</td>
 <td>
-@can('maintain')
+{{--@can('maintain')--}}
   <a href="{{ action("RepairsController@edit",$repair) }}" title="تعديل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit " aria-hidden="true"></span></a>
-  @endcan
+  {{--@endcan --}}
   <a href="{{ action("RepairsController@show",[$repair,'action'=> 'RepairsController@finish']) }}" title="إتمام" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-thumbs-up " aria-hidden="true"></span></a>
 
 </td>

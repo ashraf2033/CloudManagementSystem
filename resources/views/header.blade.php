@@ -54,7 +54,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">الملف الشخصي</a>
+                      <a href="{{action('UsersController@show',\Auth::user()->user_id) }}" class="btn btn-default btn-flat">الملف الشخصي</a>
                     </div>
                     <div class="pull-right">
                       @if(\Auth::check())

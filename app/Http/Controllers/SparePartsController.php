@@ -43,8 +43,8 @@ class SparePartsController extends Controller
      */
     public function store(AddPartRequest $request)
     {
-    $part = SparePart::create($request->except('part_qty','note'));
-    Trans::create(['part_qty'=>$request->part_qty,'note'=>$request->note,'part_id'=>$part->part_id,'type'=>'+']);
+    $part = SparePart::create($request->except('part_qty','note','user_id'));
+    Trans::create(['part_qty'=>$request->part_qty,'note'=>$request->note,'part_id'=>$part->part_id,'type'=>'+','user_id'=>$request->user_id]);
 
     return redirect('/spareparts');
     }

@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Technican;
-class TechnicansController extends Controller
+use App\User;
+
+class UsersController extends Controller
 {
+
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +22,9 @@ class TechnicansController extends Controller
      */
     public function index()
     {
-      $page_title = "الفنيين";
-      $technicans = Technican::all();
-      return view('technicans.tech_index',compact('technicans','page_title'));
+      $users = User::all();
+
+      return view('users.index',compact('users'));
     }
 
     /**
@@ -28,9 +34,9 @@ class TechnicansController extends Controller
      */
     public function create()
     {
-        $page_title = "إضافة فني";
-        return view('technicans.tech_add');
-    }
+
+      return view('users.register');
+}
 
     /**
      * Store a newly created resource in storage.
@@ -40,9 +46,18 @@ class TechnicansController extends Controller
      */
     public function store(Request $request)
     {
-        $technican = $request->all();
-        Technican::create($technican);
-        return redirect('technicans');
+      $this->validate($request, [
+             'name' => 'required',
+             'email' => 'required|email|unique:users,email',
+             'role' => 'required',
+             'password' =>'required|confirmed'
+         ]);
+      $user = $request->except('password');
+      $pass = bcrypt($request->password);
+      $user['password']= $pass;
+
+      User::create($user);
+      return redirect('/users');
     }
 
     /**
@@ -53,14 +68,14 @@ class TechnicansController extends Controller
      */
     public function show($id)
     {
-$tech = Technican::findOrFail($id);
-$reps = $tech->repair()->approved();
-$tasks = $tech->task;
-$recs = collect([$tasks,$reps])->collapse()->sortByDesc('created_at');
+        $user = User::findOrFail($id);
+        $reps = $user->repairs()->notApproved();
+        $tasks = $user->tasks;
+        $fails = $user->failures()->waiting();
+        $transes = $user->transes;
+        $recs = collect([$tasks,$reps,$fails,$transes])->collapse()->sortBy('created_at');
 
-return view('technicans.tech_show',compact('tech','recs'));
-//return dd($technican);
-
+        return view('users.user_show',compact('user','recs'));
     }
 
     /**
@@ -94,9 +109,6 @@ return view('technicans.tech_show',compact('tech','recs'));
      */
     public function destroy($id)
     {
-      $technican = Technican::findOrFail($id);
-      $technican->delete();
-
-      return redirect('technicans');
+        //
     }
 }

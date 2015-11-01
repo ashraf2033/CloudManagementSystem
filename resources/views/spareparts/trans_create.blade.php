@@ -20,6 +20,7 @@
  <input class="form-control" name="part_qty" type="number">
 
 {!! Form::hidden('type',$type) !!}
+{!! Form::hidden('user_id',\Auth::user()->user_id) !!}
 </div>
 <div class='form-group col-md-3'>
 {!! Form::label('note','نوع الحركة:') !!}
