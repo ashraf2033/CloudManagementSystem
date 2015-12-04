@@ -289,9 +289,9 @@
                             <td>{{$repairMonth->failure->fail_name}}</td>
                             <td>{{$repairMonth->failure->machine->machine_name}}</td>
                             <td>
-                              @if($repairMonth->rep_status == "جاري الإصلاح")
+                              @if($repairMonth->rep_status == "مؤقت")
                               <span class="label label-warning">{{$repairMonth->rep_status}}</span>
-                              @elseif($repairMonth->rep_status == "تم")
+                              @elseif($repairMonth->rep_status == "دائم")
                               <span class="label label-primary">{{$repairMonth->rep_status}}</span>
                               @elseif($repairMonth->rep_status == "تم الإعتماد")
                               <span class="label label-success">{{$repairMonth->rep_status}}</span>
@@ -328,9 +328,9 @@
                             <td>{{$repairWeek->failure->fail_name}}</td>
                             <td>{{$repairWeek->failure->machine->machine_name}}</td>
                             <td>
-                              @if($repairWeek->rep_status == "جاري الإصلاح")
+                              @if($repairWeek->rep_status == "مؤقت")
                               <span class="label label-warning">{{$repairWeek->rep_status}}</span>
-                              @elseif($repairWeek->rep_status == "تم")
+                              @elseif($repairWeek->rep_status == "دائم")
                               <span class="label label-primary">{{$repairWeek->rep_status}}</span>
                               @elseif($repairWeek->rep_status == "تم الإعتماد")
                               <span class="label label-success">{{$repairWeek->rep_status}}</span>
@@ -366,9 +366,9 @@
                             <td>{{$repairToday->failure->fail_name}}</td>
                             <td>{{$repairToday->failure->machine->machine_name}}</td>
                             <td>
-                              @if($repairToday->rep_status == "جاري الإصلاح")
+                              @if($repairToday->rep_status == "مؤقت")
                               <span class="label label-warning">{{$repairToday->rep_status}}</span>
-                              @elseif($repairToday->rep_status == "تم")
+                              @elseif($repairToday->rep_status == "دائم")
                               <span class="label label-primary">{{$repairToday->rep_status}}</span>
                               @elseif($repairToday->rep_status == "تم الإعتماد")
                               <span class="label label-success">{{$repairToday->rep_status}}</span>

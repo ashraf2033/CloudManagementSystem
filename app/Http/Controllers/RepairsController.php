@@ -41,7 +41,7 @@ class RepairsController extends Controller
     public function waiting()
     {
       $page_title= 'الإصلاحات';
-      $repairs = Repair::Finished();
+      $repairs = Repair::NotApproved();
       $modal_title= "حذف تقرير";
       $modal_body= "هل تريد حذف هذا التقرير";
 
@@ -127,7 +127,7 @@ class RepairsController extends Controller
         $fail = Failure::findOrFail($repairin['fail_id']);
         $fail->status = 1;
         $fail->save();
-          return redirect('maintainance/repairs');
+          return redirect('maintainance/repairs/waiting');
        }
 
     /**
@@ -211,7 +211,7 @@ class RepairsController extends Controller
      $tech_obj->repair()->attach($repair);
      }
 
-      return redirect('maintainance/repairs');
+      return redirect('maintainance/repairs/waiting');
   }
 
     /**
@@ -224,8 +224,10 @@ class RepairsController extends Controller
     {
         $repair = Repair::findOrFail($id);
         $repair->delete();
-
-        return redirect('maintainance/repairs')->withSuccess('تم حذف التقرير بنجاح');
+        $fail = Failure::findOrFail($repair->failure->fail_id);
+        $fail->status = 0;
+        $fail->save();
+        return redirect('maintainance/repairs/waiting')->withSuccess('تم حذف التقرير بنجاح');
     }
     public function approve(Request $request, $id){
 
@@ -236,7 +238,7 @@ class RepairsController extends Controller
 
         $repair->update(['rep_status'=>'تم الإعتماد']);
 
-        return redirect('maintainance/repairs');
+        return redirect('maintainance/repairs/waiting');
 
     }
     public function finish(Request $request, $id){
@@ -246,7 +248,7 @@ class RepairsController extends Controller
         $repair = Repair::findOrFail($id);
         $repair->update(['rep_status'=>'تم']);
 
-        return redirect('maintainance/repairs');
+        return redirect('maintainance/repairs/waiting');
 
     }
 

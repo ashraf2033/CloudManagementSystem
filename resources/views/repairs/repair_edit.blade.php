@@ -33,7 +33,7 @@
 
       <div class="form-group col-md-6">
       {!! Form::label('rep_status','حالة الإصلاح:') !!}
-      {!! Form::select('rep_status',[''=>'إختر','جاري الإصلاح'=>'جاري الإصلاح','تم'=>'تم',],null,['class' => 'form-control']) !!}
+      {!! Form::select('rep_status',[''=>'إختر','مؤقت'=>'مؤقت','دائم'=>'دائم',],null,['class' => 'form-control']) !!}
       </div>
       <div class="form-group col-md-12">
       {!! Form::label('rep_details','تفاصيل الإصلاح:') !!}

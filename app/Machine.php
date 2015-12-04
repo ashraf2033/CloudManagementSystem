@@ -20,5 +20,9 @@ public function failure(){
 
   return $this->hasMany('App\Failure');
 }
+public function task(){
+
+  return $this->hasMany('App\Task');
+}
 
 }

@@ -47,7 +47,7 @@
 	$(function() {
     $( "#datepicker" ).datepicker({
 			language : 'ar',
-			format : 'mm-dd-yyyy',
+			format : 'yyyy-mm-dd',
 			endDate : '0d',
 
 		});

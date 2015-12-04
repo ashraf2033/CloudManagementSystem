@@ -50,7 +50,6 @@
         <ul class="treeview-menu">
           <li><a href="{{ action('PagesController@maintainance') }}"><i class="fa fa-circle-o"></i>الرئيسية</a></li>
           <li><a href="{{ action('FailuresController@index') }}"><i class="fa fa-circle-o"></i>سجل الأعطال</a></li>
-          <li><a href="{{ action('RepairsController@index') }}"><i class="fa fa-circle-o"></i>الإصلاحات</a></li>
           <li><a href="{{ action('RepairsController@waiting') }}"><i class="fa fa-circle-o"></i>إصلاحات بإنتظار الإعتماد</a></li>
           <li><a href="{{ action('RepairsController@archive') }}"><i class="fa fa-circle-o"></i>أرشيف الإصلاحات</a></li>
         </ul>

@@ -41,8 +41,12 @@
 </div>
 	<div class="container col-md-12">
 
+		<div class="col-md-3">
+			{!! Form::label('reporter','مقدم الطلب:') !!}
+			{!! Form::text('reporter',null,['class'=>'form-control']) !!}
+			</div>
+		<div class="form-group col-md-6 ">
 
-		<div class="form-group col-md-6">
 		{!! Form::label('shift','الوردية') !!}
 
 		<div>

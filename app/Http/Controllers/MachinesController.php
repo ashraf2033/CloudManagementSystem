@@ -83,9 +83,11 @@ class MachinesController extends Controller
     public function show($id)
     {
       $machine = Machine::findOrFail($id);
-      $failures = $machine->failure;
-
-      return view('machines.record',compact('machine','failures'));
+    //  $failures = Failure::where("machine_id",$id)->where("status","!=",0)->get();
+$failures = $machine->failure()->repaired();
+      $tasks = $machine->task()->Finished();
+$recs = collect([$failures,$tasks])->collapse()->sortByDesc('created_at');
+      return view('machines.record',compact('machine','recs'));
     }
 
     /**
@@ -94,11 +96,12 @@ class MachinesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit(AddMachineRequest $request,$id)
+    //add edit function to machines
+    public function edit($id)
     {
       $machine = Machine::findOrFail($id);
-     $machine->update($request->all());
-          return view('machines.machines_create');
+    // $machine->update($request->all());
+            return view('machines.machines_edit',compact('machine'));
     }
 
     /**
@@ -108,9 +111,11 @@ class MachinesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(AddMachineRequest $request, $id)
     {
-        //
+      $machine = Machine::findOrFail($id);
+     $machine->update($request->all());
+     return redirect('machines');
     }
 
     /**

@@ -34,7 +34,6 @@
 
 </tr>
 @elseif(get_class($rec) === 'App\Task')
-
 <td style="text-align:right">{{$rec->created_at}}</td>
 <td style="text-align:right">{{$rec->task_name}}</td>
 <td style="text-align:right"><a href="{{action("TasksController@show",[$rec->task_id,'action'=>'TasksController@show'])}}">عملية صيانة رقم {{$rec->task_id}}</a></td>

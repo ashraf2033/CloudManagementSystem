@@ -17,7 +17,7 @@
     <div class="small-box bg-green">
       <div class="inner">
         <h3>{{ $tasks_count }}</h3>
-        <h4> مهام فحص هذا اليوم</h4>
+        <h4>مهام صيانة مجدولة</h4>
       </div>
       <div class="icon">
                     <i class="fa fa-support"></i>

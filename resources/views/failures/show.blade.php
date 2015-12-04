@@ -52,7 +52,7 @@
       <h5>  الوردية : {{$failure->shift }}</h5>
      </td>
      <td>
-       <h5>  مقدم الطلب : {{$failure->user->name}} </h5>
+       <h5>  مقدم الطلب : {{$failure->reporter}} </h5>
     </td>
     </tr>
   </tbody>
