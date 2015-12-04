@@ -26,13 +26,14 @@ class ReportFailureRequest extends Request
         return [
             //
             'fail_name' => 'required',
+            'reporter' => 'required',
             'machine_id' => 'required',
             'fail_time' => 'required | date',
             'fail_type' => 'required',
             'shift' => 'required',
             'fail_importance' => 'required'
-           
-            
+
+
         ];
     }
 }
