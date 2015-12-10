@@ -66,7 +66,7 @@
   {{--  @endcan --}}
   {{--  @can('produce') --}}
   <a href="{{ action("FailuresController@edit",$failure)}}" title="تعديل" aria-label="Left Align" type="button" class="btn btn-primary "><span class="glyphicon glyphicon-edit " aria-hidden="true"></span> &nbsp;تعـديل</a>
-    <a href="#" title="تفاصيل" aria-label="Left Align" type="button" class="btn btn-danger " data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-trash " aria-hidden="true"></span>&nbsp;حذف</a>
+    <a href="#" title="حذف" aria-label="Left Align" type="button" class="btn btn-danger " data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-trash " aria-hidden="true"></span>&nbsp;حذف</a>
   {{--  @endcan --}}
 </div>
 @include('partials.modal',[

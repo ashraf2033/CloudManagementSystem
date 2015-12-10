@@ -15,6 +15,7 @@ class CreateMachinesTable extends Migration
         Schema::create('machines', function (Blueprint $table) {
             $table->increments('machine_id');
             $table->string('machine_name');
+            $table->string('machine_type');
             $table->string('serial_number');
             $table->string('machine_supplier');
             $table->string('production_line');

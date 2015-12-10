@@ -33,6 +33,8 @@
     <td>{{ $technican->tech_type }}</td>
     <td>
       <a href="{{action("TechnicansController@show",$technican->id )}}" title="تفاصيل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-question-sign " aria-hidden="true"></span></a>
+      <a href="{{action("TechnicansController@edit",$technican->id )}}" title="تعديل" aria-label="Left Align" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit " aria-hidden="true"></span></a>
+
   	</td>
 @include('partials.modal',[
   'model' => "$technican",

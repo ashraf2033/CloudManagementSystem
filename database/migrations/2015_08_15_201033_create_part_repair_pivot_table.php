@@ -29,6 +29,6 @@ class CreatePartRepairPivotTable extends Migration
      */
     public function down()
     {
-        Schema::drop('part_repair');
+       Schema::drop('part_repair');
     }
 }

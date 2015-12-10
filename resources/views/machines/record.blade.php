@@ -22,22 +22,24 @@
          <h5>الإسم : {{$machine->machine_name}}</h5>
          </td>
          <td>
-         <h5>المورد : {{$machine->machine_supplier}}</h5>
+         <h5>نوع الآلة : {{$machine->machine_type}}</h5>
          </td>
+
          <td>
          <h5>  تاريخ الشراء : {{$machine->buying_date->format('Y-m-d')}} </h5>
          </td>
        </tr>
        <tr>
          <td>
+         <h5>المورد : {{$machine->machine_supplier}}</h5>
+         </td>
+         <td>
          <h5>الشركة المصنعة : {{$machine->manufacturer}}</h5>
          </td>
          <td>
          <h5>الرقم التسلسلي : {{$machine->serial_number}}</h5>
         </td>
-        <td>
-        <h5> </h5>
-       </td>
+  
        </tr>
      </tbody>
      </table>

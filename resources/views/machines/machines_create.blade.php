@@ -15,7 +15,11 @@
 
 @include('machines.form',['submitbtn' => 'إضافة'])
 
+<div class="box-footer">
+{!! Form::submit("إضافة",['class' =>'btn btn-primary ']) !!}
+
 {!! Form::close() !!}
+
 </div>
 </div><!--/box-->
 </div>

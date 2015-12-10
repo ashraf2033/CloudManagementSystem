@@ -13,9 +13,25 @@
 <div class="box-body">
   {!! Form::model($machine,['method' => 'PATCH','action' => ['MachinesController@update',$machine->machine_id]]) !!}
 
-  @include('machines.form',['submitbtn' => 'تعديل'])
+  @include('machines.form')
 
+
+</div>
+<div class="box-footer">
+{!! Form::submit("تعديل",['class' =>'btn btn-primary ']) !!}
   {!! Form::close() !!}
+  <a href="#" title="حذف" aria-label="Left Align" type="button" class="btn btn-danger " data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-trash " aria-hidden="true"></span>&nbsp;حذف</a>
+{{--  @endcan --}}
+</div>
+@include('partials.modal',[
+'model' => "$machine",
+'wild' => "$machine->machine_id",
+'method'=>'DELETE',
+'action'=>'MachinesController@destroy',
+'modal_title'=>'حذف آلة',
+'modal_body'=>'هل تريد حذف هذه الآلة'
+])
+
 </div>
 </div><!--/box-->
 </div>

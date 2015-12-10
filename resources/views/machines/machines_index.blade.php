@@ -31,6 +31,7 @@
   	<tr>
   	<th style="text-align:right">#</th>
      <th style="text-align:right">الآلة</th>
+  	<th style="text-align:right">نوع الآلة</th>
   	<th style="text-align:right">الرقم المسلسل</th>
      <th style="text-align:right">المورد</th>
   	<th style="text-align:right">خط الإنتاج</th>
@@ -45,6 +46,7 @@
   <tr>
   	<td>{{ $machine->machine_id }}</td>
   	<td>{{ $machine->machine_name }}</td>
+  	<td>{{ $machine->machine_type }}</td>
   	<td>{{ $machine->serial_number }}</td>
   	<td>{{ $machine->machine_supplier}}</td>
   	<td>{{ $machine->production_line }}</td>

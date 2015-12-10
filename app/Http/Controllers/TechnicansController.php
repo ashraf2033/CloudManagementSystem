@@ -71,7 +71,8 @@ return view('technicans.tech_show',compact('tech','recs'));
      */
     public function edit($id)
     {
-        //
+        $tech = Technican::findOrFail($id);
+        return view('technicans.tech_edit',compact('tech'));
     }
 
     /**
@@ -83,8 +84,10 @@ return view('technicans.tech_show',compact('tech','recs'));
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+  $technican = Technican::findOrFail($id);
+      $technican->update($request->all());
+      return redirect('technicans');
+        }
 
     /**
      * Remove the specified resource from storage.
