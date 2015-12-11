@@ -33,13 +33,13 @@
 @elseif(get_class($rec) === 'App\Repair')
 
 <td style="text-align:right">{{$rec->created_at}}</td>
-<td style="text-align:right"><a href="{{action("RepairsController@show",[$rec->rep_id,'action'=>'SparePartsController@show'])}}">عملية إصلاح رقم {{$rec->rep_id}}</a></td>
+<td style="text-align:right"><a href="{{action("RepairsController@show",[$rec->rep_id,'action'=>'SparePartsController@show'])}}">{{$rec->failure->fail_name}}</a></td>
 <td style="text-align:right">-{{$rec->pivot->part_qty}}</td>
 </tr>
 @elseif(get_class($rec) === 'App\Task')
 
 <td style="text-align:right">{{$rec->created_at}}</td>
-<td style="text-align:right"><a href="{{action("TasksController@show",[$rec->task_id,'action'=>'SparePartsController@show'])}}">عملية صيانة رقم {{$rec->task_id}}</a></td>
+<td style="text-align:right"><a href="{{action("TasksController@show",[$rec->task_id,'action'=>'SparePartsController@show'])}}">{{$rec->task_name}}</a></td>
 <td style="text-align:right">-{{$rec->pivot->part_qty}}</td>
 </tr>
 @endif

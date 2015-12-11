@@ -27,7 +27,7 @@
 @if(get_class($rec) === 'App\Repair')
 
 <td style="text-align:right">{{$rec->created_at}}</td>
-<td><a href="{{action("RepairsController@show",[$rec->repair->rep_id,'action'=>'RepairsController@show'])}}">{{$rec->fail_name}}</a></td>
+<td><a href="{{action("RepairsController@show",[$rec->rep_id,'action'=>'RepairsController@show'])}}">{{$rec->failure->fail_name}}</a></td>
 
 </tr>
 @elseif(get_class($rec) === 'App\Task')
